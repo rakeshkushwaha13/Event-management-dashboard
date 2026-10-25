@@ -1,0 +1,185 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventFlow | Event Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>🎯 EventFlow</h2>
+    <p class="menu-title">MAIN MENU</p>
+    <button class="nav-btn active" data-page="dashboard">🏠 Dashboard</button>
+    <button class="nav-btn" data-page="events">📅 Events</button>
+    <button class="nav-btn" data-page="participants">👥 Participants</button>
+    <button class="nav-btn" data-page="analytics">📊 Analytics</button>
+
+    <div class="sidebar-bottom">
+        <p>Created by</p>
+        <strong>Rakesh Kushwaha</strong>
+    </div>
+</div>
+
+<main class="main">
+    <header class="topbar">
+        <div>
+            <h1 id="pageTitle">Dashboard</h1>
+            <p>Manage your events in one place.</p>
+        </div>
+        <button id="themeBtn" class="theme-btn">🌙 Dark Mode</button>
+    </header>
+
+    <section id="dashboardPage" class="page">
+        <div class="stats">
+            <div class="stat-card">
+                <span>Total Events</span>
+                <h2 id="totalEvents">0</h2>
+                <small>All created events</small>
+            </div>
+            <div class="stat-card">
+                <span>Upcoming Events</span>
+                <h2 id="upcomingEvents">0</h2>
+                <small>Events scheduled ahead</small>
+            </div>
+            <div class="stat-card">
+                <span>Participants</span>
+                <h2 id="totalParticipants">0</h2>
+                <small>Total registrations</small>
+            </div>
+        </div>
+
+        <div class="section-heading">
+            <h2>Recent Events</h2>
+            <button class="primary-btn" id="addEventBtn">+ Create Event</button>
+        </div>
+
+        <div id="dashboardEvents" class="event-grid"></div>
+    </section>
+
+    <section id="eventsPage" class="page hidden">
+        <div class="section-heading">
+            <h2>All Events</h2>
+            <button class="primary-btn" id="addEventBtn2">+ Create Event</button>
+        </div>
+
+        <div class="toolbar">
+            <input id="searchInput" type="search" placeholder="Search events...">
+            <select id="categoryFilter">
+                <option value="All">All Categories</option>
+                <option value="Conference">Conference</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Seminar">Seminar</option>
+                <option value="Party">Party</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div id="allEvents" class="event-grid"></div>
+    </section>
+
+    <section id="participantsPage" class="page hidden">
+        <h2>Participants</h2>
+        <p class="muted">Register participants for your events.</p>
+
+        <form id="participantForm" class="form-card">
+            <label>Participant Name
+                <input id="participantName" type="text" required placeholder="Enter full name">
+            </label>
+            <label>Email Address
+                <input id="participantEmail" type="email" required placeholder="name@example.com">
+            </label>
+            <label>Select Event
+                <select id="participantEvent" required></select>
+            </label>
+            <button class="primary-btn" type="submit">Register Participant</button>
+        </form>
+
+        <h2 class="table-heading">Registration List</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Event</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="participantTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="analyticsPage" class="page hidden">
+        <h2>Event Analytics</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <span>Categories</span>
+                <h2 id="categoryCount">0</h2>
+            </div>
+            <div class="stat-card">
+                <span>Registrations</span>
+                <h2 id="registrationCount">0</h2>
+            </div>
+        </div>
+        <div class="form-card">
+            <h3>Events by Category</h3>
+            <div id="categoryAnalytics"></div>
+            <button id="exportBtn" class="primary-btn">Export Participants CSV</button>
+        </div>
+    </section>
+</main>
+
+<div id="eventModal" class="modal hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Create Event</h2>
+            <button type="button" id="closeModal" class="close-btn">✕</button>
+        </div>
+
+        <form id="eventForm">
+            <input id="eventId" type="hidden">
+
+            <label>Event Name
+                <input id="eventName" type="text" required placeholder="Enter event name">
+            </label>
+
+            <label>Category
+                <select id="eventCategory" required>
+                    <option value="Conference">Conference</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Seminar">Seminar</option>
+                    <option value="Party">Party</option>
+                    <option value="Other">Other</option>
+                </select>
+            </label>
+
+            <label>Date
+                <input id="eventDate" type="date" required>
+            </label>
+
+            <label>Location
+                <input id="eventLocation" type="text" required placeholder="Enter venue">
+            </label>
+
+            <label>Description
+                <textarea id="eventDescription" rows="3" placeholder="About the event"></textarea>
+            </label>
+
+            <div class="modal-actions">
+                <button type="button" id="cancelModal" class="secondary-btn">Cancel</button>
+                <button type="submit" class="primary-btn">Save Event</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
+```
